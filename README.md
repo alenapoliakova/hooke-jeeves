@@ -1,5 +1,5 @@
-# hooke-jeeves
-The Hooke-Jeeves (pattern search) algorithm implementation
+# Хук-Дживс
+Метод Хук-Дживса поиска минимума функции:
 
 1.	Выбор начальной точки поиска x<sub>0</sub>  = {x<sub>1</sub><sup>0</sup>, … x<sub>n</sub><sup>0</sup>}и начальное приращение Δx0
    
