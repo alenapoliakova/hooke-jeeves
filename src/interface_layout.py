@@ -7,22 +7,22 @@ from tkinter import scrolledtext
 from tkinter import messagebox
 from tkinter.ttk import Combobox
 
-root = Tk() # окно приложения
+root = Tk()  # окно приложения
 
 
 def start_click():
-expression = entry.get() + '\n'
-display.insert(INSERT, expression)
+    expression = entry.get() + '\n'
+    display.insert(INSERT, expression)
 
 
 def stop_click():
-display.delete(1.0, END)
-display.insert(INSERT, 'Решение: ' + '\n')
+    display.delete(1.0, END)
+    display.insert(INSERT, 'Решение: ' + '\n')
 
 
 root['bg'] = '#fafafa'
 root.title("The Hooke-Jeeves")
-root.wm_attributes('-alpha', 1) # прозрачность
+root.wm_attributes('-alpha', 1)  # прозрачность
 root.geometry('600x500')
 root.resizable(width=False, height=False)
 
@@ -30,17 +30,17 @@ frame = Frame(root, bg='green')
 frame.place(height=50, relwidth=1)
 
 title = Label(
-text='Coded and Designed by Malinnik team',
-background='green',
-foreground='white',
-width=60,
+    text='Coded and Designed by Malinnik team',
+    background='green',
+    foreground='white',
+    width=60,
 )
 title.place(x=260, y=16)
 title = Label(
-text='Алгоритм Хука-Дживса',
-background='green',
-foreground='white',
-font=40,
+    text='Алгоритм Хука-Дживса',
+    background='green',
+    foreground='white',
+    font=40,
 )
 title.place(x=20, y=10)
 
@@ -50,7 +50,7 @@ display.place(x=20, y=60, width=560, height=300)
 display.insert(INSERT, 'Решение: ' + '\n')
 
 title = Label(
-text='Введите уравнение:', background='white', foreground='Black'
+    text='Введите уравнение:', background='white', foreground='Black'
 )
 title.place(x=20, y=380)
 entry = Entry(bg='white', width=40)
@@ -61,11 +61,11 @@ maximum = Radiobutton(text="Maximum", value="Maximum", background='white')
 maximum.place(x=450, y=385)
 
 start = Button(
-text='Начать', bg='green', foreground='white', command=start_click
+    text='Начать', bg='green', foreground='white', command=start_click
 )
 start.place(x=20, y=420, width=110, height=30)
 stop = Button(
-text='Остановить', bg='red', foreground='white', command=stop_click
+    text='Остановить', bg='red', foreground='white', command=stop_click
 )
 stop.place(x=140, y=420, width=110, height=30)
 
