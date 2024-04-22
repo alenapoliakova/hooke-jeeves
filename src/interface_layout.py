@@ -1,18 +1,24 @@
 # -*- coding: utf8 -*-
-import tkinter
 import time
+import tkinter
+import random
 from tkinter import ttk
 from tkinter import *
 from tkinter import scrolledtext
 from tkinter import messagebox
 from tkinter.ttk import Combobox
+from algorithm import HookJeeves
+
 
 root = Tk()  # окно приложения
-
+#Пример ввода: (x1 + x2) ^ 2 + (x2 - 1) ^ 2
+#Ввод точности: 0.2
 
 def start_click():
-    expression = entry.get() + '\n'
-    display.insert(INSERT, expression)
+    algo = HookJeeves(entry.get(), {"x1": random.randint(1,10), "x2": random.randint(1,10)}, 2, float(entry_accuracy.get()))
+    algo.solve()
+    display.insert(INSERT, f"{algo.current_point=} {algo.current_step}")
+    answer_entry.insert(INSERT, f"{algo.current_point=} {algo.current_step}")
 
 
 def stop_click():
@@ -63,16 +69,24 @@ maximum.place(x=450, y=385)
 start = Button(
     text='Начать', bg='green', foreground='white', command=start_click
 )
-start.place(x=20, y=420, width=110, height=30)
+start.place(x=20, y=445, width=110, height=30)
 stop = Button(
     text='Остановить', bg='red', foreground='white', command=stop_click
 )
-stop.place(x=140, y=420, width=110, height=30)
+stop.place(x=140, y=445, width=110, height=30)
 
 background1 = Label(text='', background='white smoke', foreground='Black')
-background1.place(x=290, y=420, width=290, height=30)
+background1.place(x=290, y=445, width=290, height=30)
 answer = Label(text='Ответ:', background='white smoke', foreground='Black')
-answer.place(x=300, y=425)
+answer.place(x=300, y=450)
 answer_entry = Entry(bg='white', width=37)
-answer_entry.place(x=345, y=426)
+answer_entry.place(x=345, y=450)
+
+title_accuracy = Label(
+    text='Введите точность:', background='white', foreground='Black'
+)
+title_accuracy.place(x=20, y=410)
+entry_accuracy = Entry(bg='white', width=40)
+entry_accuracy.place(x=140, y=410)
+
 root.mainloop()
