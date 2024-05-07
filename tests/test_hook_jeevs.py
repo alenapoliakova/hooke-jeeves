@@ -1,6 +1,8 @@
 import pytest
 from src.algorithm import HookJeeves
 
+
+@pytest.mark.timeout(3)
 @pytest.mark.parametrize("function,initial_points,delta,epsilon,expected_points,expected_step", [
     # 1. Простая проверка с двумя слагаемыми в степени
     ("x1**2 + x2**2", {"x1": 5, "x2": 6}, 0.5, 0.2, {"x1": 0, "x2": 0}, 0.125),
