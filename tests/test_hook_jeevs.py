@@ -13,7 +13,7 @@ from src.algorithm import HookJeeves
     # 4. Проверка с выделением коэффициентов у переменных
     ("(x1 - 2)**2 + 3*(x2**2)", {"x1": 0, "x2": -1},0.5, 0.2, {"x1": 2, "x2": 0}, 0.125),
     # 5. Функция Розенброка
-    ("(1-x1)**2 + 100*((x2 - x1**2)**2)", {"x1": 0, "x2": 0}, 0.5, 0.2, {"x1": 1, "x2": 1}, 0.125),
+    ("(1-x1)**2 + 100*((x2 - x1**2)**2)", {"x1": -5, "x2": 10}, 2, 0.2, {"x1": 1, "x2": 1}, 0.125),
 ])
 def test_hook_jeeves(function, initial_points, delta, epsilon, expected_points, expected_step) -> None:
     algo = HookJeeves(function, initial_points, delta, epsilon)
