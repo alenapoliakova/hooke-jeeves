@@ -3,3 +3,6 @@ f = x1^3 + x2^3 - 3*x1*x2, min, delta = 0.5, solution = (1, 1), X0 = (0, 0)
 f = (x1 - 2)^2 + 3*x2^2, min, delta = 0.5, solution = (2, 0), X0 = (0, -1)
 f = x1^3 + 3*x1*x2 - 15*x1 - 12*x2, min, delta = 0.5, solution = (2, 1), X0 = (0, 0)
 f = (1 - x1)^2 + 100*(x2 - x1^2,)^2 min, delta = 0.5, solution = (1, 1), X0 = (0, 0) // уравнение Розенброка
+
+f = sqrt(x1^2 + x2^2) min, delta = 0.5, solution = (0, 0), X0 = (-1, -1)
+f = 2x1^3 - x2^3 - 3x3^3 + 6x1^2 + 3x2 - 9x3^2 min, delta = 0.5, solution = (0, -1, -2), X0 = (0, 0, 0)
