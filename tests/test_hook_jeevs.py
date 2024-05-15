@@ -27,3 +27,8 @@ def test_explore() -> None:
     algo = HookJeeves("(x1+6)**2 + (x2-1)**2", {"x1": 5, "x2": 6}, 2, 0.2)
     algo.explore()
     assert algo.current_point == {"x1": 3, "x2": 4}
+
+def pattern_search() -> None:
+    algo = HookJeeves("(x1+6)**2 + (x2-1)**2", {"x1": 5, "x2": 6}, 2, 0.2)
+    algo.pattern_search()
+    assert algo.current_point == {"x1": -1, "x2": 0}
