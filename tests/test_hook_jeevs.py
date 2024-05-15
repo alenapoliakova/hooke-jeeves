@@ -23,7 +23,7 @@ def test_hook_jeeves(function, initial_points, delta, epsilon, expected_points, 
     assert algo.current_point == expected_points
     assert algo.current_step == expected_step
 
-def test_explore(function, initial_points, delta, epsilon, expected_points, expected_step) -> None:
+def test_explore() -> None:
     algo = HookJeeves("(x1+6)**2 + (x2-1)**2", {"x1": 5, "x2": 6}, 2, 0.2)
     algo.explore()
     assert algo.current_point == expected_points
