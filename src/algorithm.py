@@ -46,7 +46,7 @@ class HookJeeves:
             else:
                 candidate_point[point] -= 2 * self.current_step
                 candidate_value = self.function.subs(candidate_point)
-                if candidate_value < current_value:
+                if candidate_value <= current_value:
                     self.current_point = candidate_point
 
     def pattern_search(self) -> None:
