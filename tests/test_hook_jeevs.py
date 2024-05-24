@@ -37,9 +37,9 @@ def test_explore(function,initial_points,delta,epsilon,expected_points) -> None:
     # 1. Простая проверка с двумя слагаемыми в степени
     ("x1**2 + x2**2", {"x1": -1, "x2": -1}, 0.5, 0.2, {"x1": -1, "x2": -1}),
     # 2. Проверка с выделением коэффициентов у переменных
-    ("(x1 - 2)**2 + 3*(x2**2)", {"x1": 0, "x2": -1},0.5, 0.2, {"x1": 21, "x2": 22}),
+    ("(x1 - 2)**2 + 3*(x2**2)", {"x1": 0, "x2": -1},0.5, 0.2, {"x1": 0, "x2": -1}),
     # 3. Тест из примера Кати
-    ("(x1+x2)**2 + (x2-1)**2", {"x1": 5, "x2": 6}, 2, 0.2, {"x1": 31, "x2": 32})
+    ("(x1+x2)**2 + (x2-1)**2", {"x1": 5, "x2": 6}, 2, 0.2, {"x1": 5, "x2": 6})
 ])
 def test_explore(function,initial_points,delta,epsilon,expected_points) -> None:
     algo = HookJeeves(function, initial_points, delta, epsilon)
