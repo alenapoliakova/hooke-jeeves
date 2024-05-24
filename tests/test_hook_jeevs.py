@@ -13,7 +13,7 @@ from src.algorithm import HookJeeves
 ])
 
 #Тест на правильность выполнения
-def test_hook_jeeves(function,initial_points,delta,epsilon,explore_point,pattern_search_point,expected_points,expected_step) -> None:
+def test_hook_jeeves(function,initial_points,delta,epsilon,expected_points,expected_step) -> None:
     algo = HookJeeves(function, initial_points, delta, epsilon)
     algo.solve()
     assert algo.current_point == expected_points
