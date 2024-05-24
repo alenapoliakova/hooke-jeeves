@@ -18,6 +18,7 @@ def test_hook_jeeves(function,initial_points,delta,epsilon,expected_points,expec
     assert algo.current_step == expected_step
 
 
+#Проверка полученных точек после исследовательного поиска
 @pytest.mark.parametrize("function,initial_points,delta,epsilon,expected_points", [
     # 1. Простая проверка с двумя слагаемыми в степени
     ("x1**2 + x2**2", {"x1": -1, "x2": -1}, 0.5, 0.2, {"x1": -0.5, "x2": -0.5}),
@@ -26,14 +27,21 @@ def test_hook_jeeves(function,initial_points,delta,epsilon,expected_points,expec
     # 3. Тест из примера Кати
     ("(x1+x2)**2 + (x2-1)**2", {"x1": 5, "x2": 6}, 2, 0.2, {"x1": 3, "x2": 4})
 ])
-#Проверка полученных точек после исследовательного поиска
 def test_explore(function,initial_points,delta,epsilon,expected_points) -> None:
     algo = HookJeeves(function, initial_points, delta, epsilon)
     algo.explore()
     assert algo.current_point == expected_points
 
-
-def test_pattern_search() -> None:
-    algo = HookJeeves("x1**2 + x2**2", {"x1": -1, "x2": -1}, 0.5, 0.2)
+#Проверка полученных точек после поиска по образцу
+@pytest.mark.parametrize("function,initial_points,delta,epsilon,expected_points", [
+    # 1. Простая проверка с двумя слагаемыми в степени
+    ("x1**2 + x2**2", {"x1": -1, "x2": -1}, 0.5, 0.2, {"x1": -1, "x2": -1}),
+    # 2. Проверка с выделением коэффициентов у переменных
+    ("(x1 - 2)**2 + 3*(x2**2)", {"x1": 0, "x2": -1},0.5, 0.2, {"x1": 21, "x2": 22}),
+    # 3. Тест из примера Кати
+    ("(x1+x2)**2 + (x2-1)**2", {"x1": 5, "x2": 6}, 2, 0.2, {"x1": 31, "x2": 32})
+])
+def test_explore(function,initial_points,delta,epsilon,expected_points) -> None:
+    algo = HookJeeves(function, initial_points, delta, epsilon)
     algo.pattern_search()
-    assert algo.current_point == {"x1": -1, "x2": -1}
+    assert algo.current_point == expected_points
