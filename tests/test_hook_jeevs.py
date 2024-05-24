@@ -13,20 +13,20 @@ from src.algorithm import HookJeeves
 ])
 
 #Тест на правильность выполнения
-def test_hook_jeeves(function, initial_points, delta, epsilon, expected_points, expected_step) -> None:
+def test_hook_jeeves(function,initial_points,delta,epsilon,explore_point,pattern_search_point,expected_points,expected_ste) -> None:
     algo = HookJeeves(function, initial_points, delta, epsilon)
     algo.solve()
     assert algo.current_point == expected_points
     assert algo.current_step == expected_step
 
 #Проверка полученных точек после исследовательного поиска
-def test_explore(function, initial_points, delta, epsilon, explore_point) -> None:
+def test_explore(function,initial_points,delta,epsilon,explore_point,pattern_search_point,expected_points,expected_ste) -> None:
     algo = HookJeeves(function, initial_points, delta, epsilon)
     algo.explore()
     assert algo.current_point == explore_point
 
 #Проверка полученных точек после поиска по шаблону
-def test_pattern_search(function, initial_points, delta, epsilon, pattern_search_point) -> None:
+def test_pattern_search(function,initial_points,delta,epsilon,explore_point,pattern_search_point,expected_points,expected_ste) -> None:
     algo = HookJeeves(function, initial_points, delta, epsilon)
     algo.pattern_search()
-    assert algo.current_point == {"x1": -1, "x2": -1}
+    assert algo.current_point == pattern_search_point
