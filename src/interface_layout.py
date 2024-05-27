@@ -9,13 +9,10 @@ from tkinter import messagebox
 from tkinter.ttk import Combobox
 from algorithm import HookJeeves
 
-
-root = Tk()  # окно приложения
-#Пример ввода: (x1 + x2) ^ 2 + (x2 - 1) ^ 2
-#Ввод точности: 0.2
+root = Tk() # окно приложения (x1 + x2) ^ 2 + (x2 - 1) ^ 2
 
 def start_click():
-    algo = HookJeeves(entry.get(), {"x1": random.randint(1,10), "x2": random.randint(1,10)}, 2, float(entry_accuracy.get()))
+    algo = HookJeeves(entry.get(), {"x1": random.randint(1, 10), "x2": random.randint(1, 10)}, 2, float(entry_accuracy.get()))
     algo.solve()
     display.insert(INSERT, f"{algo.current_point=} {algo.current_step}")
     answer_entry.insert(INSERT, f"{algo.current_point=} {algo.current_step}")
@@ -23,7 +20,7 @@ def start_click():
 
 def stop_click():
     display.delete(1.0, END)
-    display.insert(INSERT, 'Решение: ' + '\n')
+    display.insert(INSERT, 'Solution:\n')
 
 
 root['bg'] = '#fafafa'
@@ -43,7 +40,7 @@ title = Label(
 )
 title.place(x=260, y=16)
 title = Label(
-    text='Алгоритм Хука-Дживса',
+    text='The Hooke-Jeeves',
     background='green',
     foreground='white',
     font=40,
@@ -53,10 +50,10 @@ title.place(x=20, y=10)
 
 display = scrolledtext.ScrolledText(bg="white")
 display.place(x=20, y=60, width=560, height=300)
-display.insert(INSERT, 'Решение: ' + '\n')
+display.insert(INSERT, 'Solution:\n')
 
 title = Label(
-    text='Введите уравнение:', background='white', foreground='Black'
+    text='Enter equality:', background='white', foreground='Black'
 )
 title.place(x=20, y=380)
 entry = Entry(bg='white', width=40)
@@ -83,7 +80,7 @@ answer_entry = Entry(bg='white', width=37)
 answer_entry.place(x=345, y=450)
 
 title_accuracy = Label(
-    text='Введите точность:', background='white', foreground='Black'
+    text='Enter accuracy:', background='white', foreground='Black'
 )
 title_accuracy.place(x=20, y=410)
 entry_accuracy = Entry(bg='white', width=40)
