@@ -1,7 +1,8 @@
 import random
 import tkinter as tk
 from tkinter import scrolledtext
-from algorithm import HookJeeves
+
+from src.algorithm import HookJeeves
 
 
 class Application(tk.Tk):
@@ -104,7 +105,7 @@ class Application(tk.Tk):
     def start_click(self) -> None:
         """Обработчик события нажатия кнопки 'Начать' для запуска алгоритма Хука-Дживса."""
         initial_point = {"x1": random.randint(1, 10), "x2": random.randint(1, 10)}
-        algo = HookJeeves(self.entry_equation.get(), initial_point, 2,
+        algo = HookJeeves(self.entry_equation.get(), initial_point, 2,  # type: ignore
                           float(self.entry_accuracy.get()))
         algo.solve()
         self.display.insert(tk.INSERT, f"{algo.current_point=} {algo.current_step}")
