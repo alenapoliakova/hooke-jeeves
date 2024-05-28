@@ -14,7 +14,7 @@ class HookJeeves:
         epsilon: Значение, определяющее критерий останова - минимальный размер шага.
     """
 
-    def __init__(self, expression: str, initial_point: dict[str, int],
+    def __init__(self, expression: str, initial_point: dict[str, int | float],
                  initial_step: int | float, epsilon: int | float) -> None:
         """
         Инициализация объекта алгоритма Хук-Дживс.
