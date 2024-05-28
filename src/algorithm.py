@@ -30,52 +30,54 @@ class HookJeeves:
         self.function = sympify(expression)
         self.epsilon = epsilon
 
-    def explore(self) -> None:
+    def explore(self, current_point: dict[str, int | float], current_step: int | float) -> dict[str, int | float]:
         """
         Метод для выполнения исследующего поиска (первый этап).
-        :return: None
+        :param current_point: Текущая точка поиска, заданная в виде словаря с координатами.
+        :param current_step: Текущий размер шага для исследующего поиска.
+        :return: Новая точка после исследующего поиска.
         """
-        self.initial_point = copy.copy(self.current_point)
-        current_value = self.function.subs(self.current_point)
-        for point in self.current_point:
-            candidate_point = copy.copy(self.current_point)
-            candidate_point[point] += self.current_step
+        current_value = self.function.subs(current_point)
+        for point in current_point:
+            candidate_point = copy.copy(current_point)
+            candidate_point[point] += current_step
             candidate_value = self.function.subs(candidate_point)
             if candidate_value <= current_value:
-                self.current_point = candidate_point
+                current_point = candidate_point
             else:
-                candidate_point[point] -= 2 * self.current_step
+                candidate_point[point] -= 2 * current_step
                 candidate_value = self.function.subs(candidate_point)
                 if candidate_value <= current_value:
-                    self.current_point = candidate_point
+                    current_point = candidate_point
+        return current_point
 
-    def pattern_search(self) -> None:
+    def pattern_search(self, current_point: dict[str, int | float], initial_point: dict[str, int | float]) -> dict[str, int | float]:
         """
         Метод для выполнения поиска по образцу (второй этап).
-        :return: None
+        :param current_point: Текущая точка поиска, заданная в виде словаря с координатами.
+        :param initial_point: Начальная точка поиска, заданная в виде словаря с координатами.
+        :return: Новая точка после поиска по образцу.
         """
         lambda_idx = 1
-        initial_value = self.function.subs(self.current_point)
+        initial_value = self.function.subs(current_point)
         candidate_value, previous_candidate, previous_point, candidate_point = None, None, None, None
         while True:
             previous_point = candidate_point
             # нахождение координат точек
             candidate_point = {}
-            for point in self.current_point:
-                candidate_point[point] = self.current_point[point] + lambda_idx * (self.current_point[point] - self.initial_point[point])
+            for point in current_point:
+                candidate_point[point] = current_point[point] + lambda_idx * (current_point[point] - initial_point[point])
 
             # вычисление значения функции
             previous_candidate = candidate_value
             candidate_value = self.function.subs(candidate_point)
-            print(f"-->{previous_candidate=} {candidate_value=} > {previous_candidate=}: {candidate_point=}")
             if previous_candidate is None and candidate_value >= initial_value:
                 # проверяем условие окончания алгоритма
                 if self.current_step > self.epsilon:
                     # уменьшаем приращение в 2 раза
                     self.current_step = self.current_step / 2
             if previous_candidate is not None and candidate_value >= previous_candidate:
-                self.current_point = previous_point
-                break
+                return previous_point
             lambda_idx += 1
 
     def solve(self) -> None:
@@ -84,8 +86,9 @@ class HookJeeves:
         :return: None
         """
         while self.current_step >= self.epsilon:
-            self.explore()
-            self.pattern_search()
+            self.initial_point = copy.copy(self.current_point)
+            self.current_point = self.explore(self.current_point, self.current_step)
+            self.current_point = self.pattern_search(self.current_point, self.initial_point)
 
 
 if __name__ == "__main__":
