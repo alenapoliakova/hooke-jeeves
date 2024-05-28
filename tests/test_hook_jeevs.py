@@ -31,8 +31,8 @@ def test_hook_jeeves(function, initial_points, delta, epsilon, expected_points,
 def test_explore(function, initial_points, delta, epsilon, expected_points) -> None:
     """Проверка полученных точек после исследовательского поиска."""
     algo = HookJeeves(function, initial_points, delta, epsilon)
-    algo.explore()
-    assert algo.current_point == expected_points
+    current_point = algo.explore(algo.current_point, algo.current_step)
+    assert current_point == expected_points
 
 
 @pytest.mark.parametrize("function,initial_points,delta,epsilon,expected_points", [
@@ -46,5 +46,5 @@ def test_explore(function, initial_points, delta, epsilon, expected_points) -> N
 def test_pattern_search(function, initial_points, delta, epsilon, expected_points) -> None:
     """Проверка полученных точек после поиска по образцу."""
     algo = HookJeeves(function, initial_points, delta, epsilon)
-    algo.pattern_search()
-    assert algo.current_point == expected_points
+    current_point = algo.pattern_search(algo.current_point, algo.initial_point)
+    assert current_point == expected_points
